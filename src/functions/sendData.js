@@ -11,6 +11,7 @@ export const sendData = async (formData) => {
         });
     })
 
+    
     formData.authors = newAuthors;
 
     formData.references?.forEach(reference => {
@@ -27,7 +28,6 @@ export const sendData = async (formData) => {
     })  
 
     console.log(formData);
-    // console.log(JSON.stringify(formData, null, 2));
 
     const dataJson = JSON.stringify(formData)
 
@@ -39,10 +39,6 @@ export const sendData = async (formData) => {
         body: dataJson
     })
         .then(response => {
-            if (!response.ok) {
-                // result = { success: false, message: response };
-            }
-            // return response.json();
         })
         .then(data => { console.log(data); result = { success: true, message: "Можно приступать к заполнению информации о другой статье" } })
         .catch(error => { console.error(error); result = { success: false, message: error } });

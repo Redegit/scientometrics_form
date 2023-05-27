@@ -1,8 +1,9 @@
+import _ from "lodash";
+
 export const InputForMulti = ({ register, root, name, index, errors, trigger, placeholder, constraints }) => {
 
     const checkError = () => {
-        if (errors[root] && errors[root][index] &&
-            errors[root][index][name] && errors[root][index][name]) {
+        if (_.get(errors, `${root}[${index}].${name}`)) {
             return true
         }
         return false

@@ -8,6 +8,8 @@ import { getSpecializations } from "../functions/getSpecializations";
 import { sendData } from "../functions/sendData";
 import { getReferences } from "../functions/getReferences";
 import { getJournals } from "../functions/getJournals";
+import MultipleReferences from "./References/MultipleReferences";
+import { Modal } from "./Modal";
 
 
 export
@@ -22,11 +24,19 @@ export
         const [references, setReferences] = useState([])
         const [journals, setJournals] = useState([])
         const [journalExists, setJournalExists] = useState(false)
+        const [invalid, setInvalid] = useState(false)
+        const [modal, setModal] = useState({})
 
         const onSubmit = (data) => {
             console.log(data);
-            sendData(data);
+            sendForm(data)
         };
+
+        const sendForm = async (data) => {
+            const modalData = await sendData(data)
+            await setModal(modalData)
+            console.log(modal);
+        }
 
         useEffect(() => {
             getSpecs();
@@ -42,13 +52,11 @@ export
         const getRefs = async () => {
             const refs = await getReferences();
             setReferences(refs);
-            console.log(refs);
         }
 
         const getJour = async () => {
             const journals = await getJournals();
             setJournals(journals);
-            console.log(journals);
         }
 
 
@@ -88,7 +96,7 @@ export
                                     pattern: { value: /^(19[0-9]{2}|20[0-9]{2})$/, message: "Несоответствие шаблону YYYY" },
                                     max: { value: (new Date()).getFullYear(), message: "Год не может превышать текущий" },
                                     min: { value: 1900, message: "Год не может быть ниже 1900" },
-                                    required: {value: true, message: "Поле должно быть заполнено"}
+                                    required: { value: true, message: "Поле должно быть заполнено" }
                                 }
                             }} />
 
@@ -128,16 +136,6 @@ export
                                 required={false}
                                 {...tools}
                             />
-
-                            {/* {references && */}
-                            <MultipleDropdown
-                                {...tools}
-                                options={references}
-                                name='references'
-                                label="Цитирования: НЕ СДЕЛАНО"
-                                isMulti={true}
-                            />
-                            {/* } */}
 
                             <SigleInput {...{
                                 ...tools,
@@ -191,30 +189,6 @@ export
                                     }} />
                                 </>
                             }
-
-                            {/* <Dropdown
-                                handleChoice={(value) => { console.log(value); }}
-                                label={"Категория"}
-                                name={"category"}
-                                options={[
-                                    { name: "K1", value: "K1" },
-                                    { name: "K2", value: "K2" },
-                                    { name: "K3", value: "K3" },
-                                    { name: "Нет", value: "" }
-                                ]}
-                                placeHolder={"Выберите категорию"}
-                                required={false}
-                                {...tools}
-                            />
-
-                            {specializations &&
-                                <MultipleDropdown
-                                    {...tools}
-                                    options={specializations}
-                                    name='specializations'
-                                    label="Специализации:"
-                                />
-                            } */}
                         </div>
 
                         <MultipleInput {...{
@@ -223,8 +197,16 @@ export
                             name: 'authors'
                         }} />
 
-                    </fieldset>
+                        <MultipleReferences {...{
+                            ...tools,
+                            journals,
+                        }}
+                        />
 
+                    </fieldset>
+                    {invalid &&
+                        <div className="mt-4 text-danger fs-5 fw-bold">Не все поля заполнены корректно</div>
+                    }
                     <button
                         className='btn btn-primary mt-4'
                         type="button"
@@ -232,20 +214,26 @@ export
                             trigger()
                                 .then((isValid) => {
                                     if (isValid) {
+                                        console.log("VALID!");
+                                        setInvalid(false);
                                         handleSubmit(onSubmit)();
+                                    } else {
+                                        console.log(errors);
+                                        setInvalid(true);
                                     }
                                 })
-                                .finally(() => {
-                                    console.log(errors);
-                                });
                         }}
                     >
                         Сохранить
                     </button>
-
                 </form>
+                {modal &&
+                    <Modal
+                        success={modal.success}
+                        message={modal.message}
+                    />
+                }
             </div >
-
         );
     }
 

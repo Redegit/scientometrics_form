@@ -112,10 +112,6 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                 </button>
                             )}
                         </div>
-                        {errors.inputFields?.[index]
-                            ? <p className='m-0 text-danger'>{`Ограничение: ${errors.inputFields?.[index]?.message}`}</p>
-                            : <></>
-                        }
                     </div>
                 ))}
             </fieldset>
@@ -125,7 +121,7 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                     onClick={() => append('')}
                     className='btn btn-primary mt-4 flex-grow-1'
                 >
-                    Добавить
+                    Добавить автора
                 </button>
             </div>
         </div>

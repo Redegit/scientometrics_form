@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { useEffect, useState } from "react";
 import Select from "react-select";
 
@@ -26,7 +27,7 @@ export const MultipleDropdown = ({ cb, placeholder, required, isMulti, setValue,
     }
 
     const checkError = () => {
-        if (errors[name]) {
+        if (_.get(errors, name)) {
             return true
         }
         return false
@@ -52,7 +53,7 @@ export const MultipleDropdown = ({ cb, placeholder, required, isMulti, setValue,
                 />
             </div>
             {errors[name]
-                ? <p className='m-0 text-danger'>{`${errors[name].message}`}</p>
+                ? <p className='m-0 text-danger'>{`${_.get(errors, `${name}.message`)}`}</p>
                 : <></>
             }
         </>

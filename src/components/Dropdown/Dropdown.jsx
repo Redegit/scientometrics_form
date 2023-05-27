@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import './Dropdown.css'
+import _ from 'lodash';
 
 export const Dropdown = ({ required, register, setValue, formState: { errors, isValid }, control, handleSubmit, trigger, name, constraints, label, placeHolder, options }) => {
     const [showDropdown, setShowDropdown] = useState(false)
@@ -40,7 +41,7 @@ export const Dropdown = ({ required, register, setValue, formState: { errors, is
                 <span className="text-danger m-1">*</span>
             }
             <div ref={dropdownRef} className={`my-dropdown-container my-dropdown-active ${showDropdown ? 'showed' : ''}`}>
-                <div className={`my-dropdown-input ${errors[name] ? 'my-dropdown-invalid' : ''}`} onClick={() => { setShowDropdown(!showDropdown) }}>
+                <div className={`my-dropdown-input ${_.get(errors, name) ? 'my-dropdown-invalid' : ''}`} onClick={() => { setShowDropdown(!showDropdown) }}>
                     <div className="my-dropdown-selected-value">{value || getDisplay()}</div>
                     <div className="my-dropdown-tools">
                         <div className="my-dropdown-tool">
@@ -62,8 +63,8 @@ export const Dropdown = ({ required, register, setValue, formState: { errors, is
                 </div>
                 }
             </div>
-            {errors[name]
-                ? <p className='m-0 text-danger'>{`${errors[name].message}`}</p>
+            {_.get(errors, name)
+                ? <p className='m-0 text-danger'>{`${_.get(errors, `${name}.message`)}`}</p>
                 : <></>
             }
         </>

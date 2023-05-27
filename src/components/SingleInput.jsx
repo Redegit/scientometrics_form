@@ -1,3 +1,6 @@
+import _ from 'lodash';
+
+
 export const SigleInput = ({ register, formState: { errors, isValid }, control, handleSubmit, trigger, name, label, constraints }) => {
 
     return (
@@ -6,13 +9,13 @@ export const SigleInput = ({ register, formState: { errors, isValid }, control, 
             {constraints?.required &&
                 <span className="text-danger m-1">*</span>
             }
-            <input className={`form-control ${errors[name] ? "is-invalid" : ""}`}
+            <input className={`form-control ${_.get(errors, name) ? "is-invalid" : ""}`}
                 {...register(name, { ...constraints })}
                 onBlur={async () => { await trigger(name); console.log(errors); }}
 
             />
-            {errors[name]
-                ? <p className='m-0 text-danger'>{`${errors[name].message}`}</p>
+            {_.get(errors, name)
+                ? <p className='m-0 text-danger'>{`${_.get(errors, `${name}.message`)}`}</p>
                 : <></>
             }
 

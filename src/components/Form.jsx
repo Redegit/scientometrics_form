@@ -25,7 +25,8 @@ export
         const [journals, setJournals] = useState([])
         const [journalExists, setJournalExists] = useState(false)
         const [invalid, setInvalid] = useState(false)
-        const [modal, setModal] = useState({})
+        const [modalData, setModalData] = useState({})
+        const [showModal, setShowModal] = useState(false)
 
         const onSubmit = (data) => {
             console.log(data);
@@ -34,25 +35,25 @@ export
 
         const sendForm = async (data) => {
             const modalData = await sendData(data)
-            await setModal(modalData)
-            console.log(modal);
+            await setModalData(modalData)
+            setShowModal(true)
         }
 
         useEffect(() => {
-            getSpecs();
-            getRefs();
+            // getSpecs();
+            // getRefs();
             getJour();
         }, []);
 
-        const getSpecs = async () => {
-            const data = await getSpecializations()
-            setSpecializations(data);
-        }
+        // const getSpecs = async () => {
+        //     const data = await getSpecializations()
+        //     setSpecializations(data);
+        // }
 
-        const getRefs = async () => {
-            const refs = await getReferences();
-            setReferences(refs);
-        }
+        // const getRefs = async () => {
+        //     const refs = await getReferences();
+        //     setReferences(refs);
+        // }
 
         const getJour = async () => {
             const journals = await getJournals();
@@ -135,6 +136,7 @@ export
                                 placeHolder={"Выберите язык"}
                                 required={false}
                                 {...tools}
+                                defaultValue={{value: ""}}
                             />
 
                             <SigleInput {...{
@@ -210,6 +212,8 @@ export
                     <button
                         className='btn btn-primary mt-4'
                         type="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop"
                         onClick={() => {
                             trigger()
                                 .then((isValid) => {
@@ -227,10 +231,10 @@ export
                         Сохранить
                     </button>
                 </form>
-                {modal &&
+                {showModal &&
                     <Modal
-                        success={modal.success}
-                        message={modal.message}
+                        data={modalData}
+                        cb={setShowModal}
                     />
                 }
             </div >

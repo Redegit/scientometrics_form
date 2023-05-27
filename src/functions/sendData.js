@@ -11,8 +11,20 @@ export const sendData = async (formData) => {
         });
     })
 
-
     formData.authors = newAuthors;
+
+    formData.references?.forEach(reference => {
+        let newInnerAuthors = {}
+        reference.authors?.forEach(author => {
+            Object.keys(author).forEach(key => {
+                if (!newInnerAuthors[key]) {
+                    newInnerAuthors[key] = [];
+                }
+                newInnerAuthors[key].push(author[key]);
+            });
+        })
+        reference.authors = newInnerAuthors;
+    })  
 
     console.log(formData);
     // console.log(JSON.stringify(formData, null, 2));
@@ -26,9 +38,14 @@ export const sendData = async (formData) => {
         headers: { "Content-Type": "application/json" },
         body: dataJson
     })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                // result = { success: false, message: response };
+            }
+            // return response.json();
+        })
         .then(data => { console.log(data); result = { success: true, message: "Можно приступать к заполнению информации о другой статье" } })
-        .catch(error => { console.error(error); result = { success: false, message: `ERROR: ${error}` } });
+        .catch(error => { console.error(error); result = { success: false, message: error } });
 
     return result
 }

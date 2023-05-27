@@ -56,7 +56,7 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                         <div className='flex-grow-1'>
                             <InputForMulti
                                 register={register}
-                                placeholder={"Department"}
+                                placeholder={"Департамент (отдел)"}
                                 trigger={trigger}
                                 root={name}
                                 name="department"
@@ -65,7 +65,7 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                             />
                             <InputForMulti
                                 register={register}
-                                placeholder={"Post"}
+                                placeholder={"Пост"}
                                 trigger={trigger}
                                 root={name}
                                 name="post"

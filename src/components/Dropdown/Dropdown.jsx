@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import './Dropdown.css'
 import _ from 'lodash';
 
-export const Dropdown = ({ required, register, setValue, formState: { errors, isValid }, control, handleSubmit, trigger, name, constraints, label, placeHolder, options }) => {
+export const Dropdown = ({ defaultValue, required, register, setValue, formState: { errors, isValid }, control, handleSubmit, trigger, name, constraints, label, placeHolder, options }) => {
     const [showDropdown, setShowDropdown] = useState(false)
     const [value, setCustomValue] = useState('')
     const dropdownRef = useRef(null)
@@ -17,6 +17,8 @@ export const Dropdown = ({ required, register, setValue, formState: { errors, is
 
     useEffect(() => {
         register(name, { required: { value: required, message: 'Поле необходимо заполнить' } })
+        if (defaultValue) setValue(name, defaultValue.value)
+
     }, []);
 
     useEffect(() => {

@@ -108,7 +108,8 @@ export
                                 name: "volume",
                                 label: "Том",
                                 constraints: {
-                                    maxLength: { value: 10, message: "Максимальная длина - 10 символов" }
+                                    maxLength: { value: 10, message: "Максимальная длина - 10 символов" },
+                                    pattern: {value: /^\d+$/, message: 'Том дложен быть числом'}
                                 }
                             }} />
 

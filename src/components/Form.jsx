@@ -109,7 +109,7 @@ export
                                 label: "Том",
                                 constraints: {
                                     maxLength: { value: 10, message: "Максимальная длина - 10 символов" },
-                                    pattern: {value: /^\d+$/, message: 'Том дложен быть числом'}
+                                    pattern: {value: /^\d+$/, message: 'Том должен быть числом'}
                                 }
                             }} />
 

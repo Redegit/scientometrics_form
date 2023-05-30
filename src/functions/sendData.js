@@ -11,7 +11,7 @@ export const sendData = async (formData) => {
         });
     })
 
-    
+
     formData.authors = newAuthors;
 
     formData.references?.forEach(reference => {
@@ -25,7 +25,7 @@ export const sendData = async (formData) => {
             });
         })
         reference.authors = newInnerAuthors;
-    })  
+    })
 
     console.log(formData);
 
@@ -33,15 +33,16 @@ export const sendData = async (formData) => {
 
     let result = {}
 
-    await fetch('http://localhost:8070/upload', {
+    await fetch('http://127.0.0.1:8070/upload', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: dataJson
+    }).then(response => {
+        if (response.ok) result = { success: true, message: "Можно приступать к заполнению информации о другой статье" }
+        else result = { success: false, message: 'Непредвиденная ошибка' }
+    }).catch(error => {
+        console.error(error); return result = { success: false, message: error }
     })
-        .then(response => {
-        })
-        .then(data => { console.log(data); result = { success: true, message: "Можно приступать к заполнению информации о другой статье" } })
-        .catch(error => { console.error(error); result = { success: false, message: error } });
 
     return result
 }

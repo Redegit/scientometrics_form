@@ -11,8 +11,8 @@ export const Modal = ({ data, cb }) => {
     }
 
     return (
-        <div style={backgroundStyle}>
-            <div className="my-modal" style={modalStyle} role="dialog">
+        <div className="modal-background">
+            <div className="my-modal" role="dialog">
                 <div className="modal modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -32,24 +32,4 @@ export const Modal = ({ data, cb }) => {
             </div>
         </div>
     );
-}
-
-const modalStyle = {
-    position: "fixed",
-    left: "50%",
-    top: "50%",
-    transform: "translate(-50%, -50%)",
-    zIndex: "100",
-    height: "fit-content",
-    width: "fit-content",
-    minWidth: "400px"
-}
-
-const backgroundStyle = {
-    position: "fixed",
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: "#33333377",
 }

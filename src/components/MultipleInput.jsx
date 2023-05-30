@@ -26,7 +26,10 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                         <div className='flex-grow-1'>
                             <InputForMulti
                                 register={register}
-                                constraints={{ required: { value: true, message: "Поле необходимо заполнить" } }}
+                                constraints={{
+                                    required: { value: true, message: "Поле необходимо заполнить" },
+                                    maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                }}
                                 placeholder={"Имя"}
                                 trigger={trigger}
                                 root={name}
@@ -42,6 +45,9 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                 name="surname"
                                 index={index}
                                 errors={errors}
+                                constraints={{
+                                    maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                }}
                             />
                             <InputForMulti
                                 register={register}
@@ -51,6 +57,9 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                 name="last_name"
                                 index={index}
                                 errors={errors}
+                                constraints={{
+                                    maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                }}
                             />
                         </div>
                         <div className='flex-grow-1'>
@@ -62,6 +71,9 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                 name="department"
                                 index={index}
                                 errors={errors}
+                                constraints={{
+                                    maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                }}
                             />
                             <InputForMulti
                                 register={register}
@@ -71,16 +83,22 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                 name="post"
                                 index={index}
                                 errors={errors}
+                                constraints={{
+                                    maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                }}
                             />
                             <InputForMulti
                                 register={register}
-                                constraints={{ required: { value: true, message: "Поле необходимо заполнить" } }}
                                 placeholder={"Организация (полное название)"}
                                 trigger={trigger}
                                 root={name}
                                 name="organization"
                                 index={index}
                                 errors={errors}
+                                constraints={{
+                                    required: { value: true, message: "Поле необходимо заполнить" },
+                                    maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                }}
                             />
                         </div>
                         <div className='flex-grow-1 d-flex flex-column'>
@@ -92,6 +110,9 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                 name="organization_short"
                                 index={index}
                                 errors={errors}
+                                constraints={{
+                                    maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                }}
                             />
                             <InputForMulti
                                 register={register}
@@ -101,6 +122,9 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                 name="city"
                                 index={index}
                                 errors={errors}
+                                constraints={{
+                                    maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                }}
                             />
                             {index !== 0 && (
                                 <button

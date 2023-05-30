@@ -1,6 +1,5 @@
 import { useFieldArray } from "react-hook-form";
 import { Reference } from "./Reference";
-import { useEffect } from "react";
 
 const MultipleReferences = ({ register, formState: { errors, isValid }, setValue, control, trigger, journals }) => {
 
@@ -9,10 +8,6 @@ const MultipleReferences = ({ register, formState: { errors, isValid }, setValue
         control,
         name: "references",
     });
-
-    // useEffect(() => {
-    //     append('')
-    // }, []);
 
     return (
         <>

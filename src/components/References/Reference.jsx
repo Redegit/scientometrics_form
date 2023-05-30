@@ -19,7 +19,8 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
                     name: `references[${index}].art_name`,
                     label: "Название статьи",
                     constraints: {
-                        required: { value: true, message: "Поле необходимо заолнить" }
+                        required: { value: true, message: "Поле необходимо заолнить" },
+                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
                     }
                 }} />
 
@@ -29,7 +30,8 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
                     label: "Страницы",
                     constraints: {
                         required: { value: true, message: "Поле необходимо заолнить" },
-                        pattern: { value: /^(\d+-\d+|\d+)$/, message: "Страницы должны быть двумя числами, разделенными дефисом (123-123), или просто одним числом (123)" }
+                        pattern: { value: /^(\d+-\d+|\d+)$/, message: "Страницы должны быть двумя числами, разделенными дефисом (123-123), или просто одним числом (123)" },
+                        maxLength: { value: 11, message: "Максимальная длина - 11 символов" }
                     }
                 }} />
 
@@ -50,6 +52,7 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
                     name: `references[${index}].volume`,
                     label: "Том",
                     constraints: {
+                        maxLength: { value: 10, message: "Максимальная длина - 10 символов" }
                     }
                 }} />
 
@@ -58,6 +61,7 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
                     name: `references[${index}].annotation`,
                     label: "Аннотация",
                     constraints: {
+                        maxLength: { value: 1500, message: "Максимальная длина - 1500 символов" }
                     }
                 }} />
 
@@ -66,6 +70,7 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
                     name: `references[${index}].keywords`,
                     label: "Ключевые слова (через запятую)",
                     constraints: {
+                        maxLength: { value: 500, message: "Максимальная длина - 500 символов" }
                     }
                 }} />
 
@@ -75,7 +80,8 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
                     name={`references[${index}].language`}
                     options={[
                         { name: "Русский", value: "rus" },
-                        { name: "Английский", value: "eng" }
+                        { name: "Английский", value: "eng" },
+                        { name: "Другое", value: "" }
                     ]}
                     placeHolder={"Выберите язык"}
                     required={false}
@@ -86,6 +92,9 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
                     ...tools,
                     name: `references[${index}].source`,
                     label: "Ссылка на источник статьи",
+                    constraints: {
+                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                    }
                 }} />
             </div>
 
@@ -111,7 +120,8 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
                             name: `references[${index}].journal_name`,
                             label: "Название",
                             constraints: {
-                                required: { value: true, message: "Поле необходимо заолнить" }
+                                required: { value: true, message: "Поле необходимо заолнить" },
+                                maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
                             }
                         }} />
 
@@ -121,6 +131,7 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
                             label: "PISSN",
                             constraints: {
                                 required: { value: true, message: "Поле необходимо заполнить" },
+                                // pattern: { value: /^[0-9]{4}-[0-9]{3}[0-9X]$/, message: "Несоответствие шаблону 1111-1111 или 1111-111X" },
                                 pattern: { value: /^[0-9]{4}-[0-9]{4}$/, message: "Несоответствие шаблону 1111-1111" }
                             }
                         }} />
@@ -130,6 +141,7 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
                             name: `references[${index}].journal_eissn`,
                             label: "EISSN",
                             constraints: {
+                                // pattern: { value: /^[0-9]{4}-[0-9]{3}[0-9X]$/, message: "Несоответствие шаблону 1111-1111 или 1111-111X" },
                                 pattern: { value: /^[0-9]{4}-[0-9]{4}$/, message: "Несоответствие шаблону 1111-1111" }
                             }
                         }} />

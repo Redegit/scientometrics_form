@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form';
 import { Dropdown } from "./Dropdown/Dropdown";
 import { MultipleDropdown } from "./MultipleDropdown";
 import { useEffect, useState } from "react";
-import { getSpecializations } from "../functions/getSpecializations";
+// import { getSpecializations } from "../functions/getSpecializations";
 import { sendData } from "../functions/sendData";
-import { getReferences } from "../functions/getReferences";
+// import { getReferences } from "../functions/getReferences";
 import { getJournals } from "../functions/getJournals";
 import MultipleReferences from "./References/MultipleReferences";
 import { Modal } from "./Modal";
@@ -20,8 +20,8 @@ export
 
         const tools = { register, setValue, formState: { errors, isValid }, control, handleSubmit, trigger }
 
-        const [specializations, setSpecializations] = useState([])
-        const [references, setReferences] = useState([])
+        // const [specializations, setSpecializations] = useState([])
+        // const [references, setReferences] = useState([])
         const [journals, setJournals] = useState([])
         const [journalExists, setJournalExists] = useState(false)
         const [invalid, setInvalid] = useState(false)
@@ -75,7 +75,8 @@ export
                                 name: "art_name",
                                 label: "Название статьи",
                                 constraints: {
-                                    required: { value: true, message: "Поле необходимо заолнить" }
+                                    required: { value: true, message: "Поле необходимо заолнить" },
+                                    maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
                                 }
                             }} />
 
@@ -85,7 +86,8 @@ export
                                 label: "Страницы",
                                 constraints: {
                                     required: { value: true, message: "Поле необходимо заолнить" },
-                                    pattern: { value: /^(\d+-\d+|\d+)$/, message: "Страницы должны быть двумя числами, разделенными дефисом (123-123), или просто одним числом (123)" }
+                                    pattern: { value: /^(\d+-\d+|\d+)$/, message: "Страницы должны быть двумя числами, разделенными дефисом (123-123), или просто одним числом (123)" },
+                                    maxLength: { value: 11, message: "Максимальная длина - 11 символов" }
                                 }
                             }} />
 
@@ -106,6 +108,7 @@ export
                                 name: "volume",
                                 label: "Том",
                                 constraints: {
+                                    maxLength: { value: 10, message: "Максимальная длина - 10 символов" }
                                 }
                             }} />
 
@@ -114,6 +117,7 @@ export
                                 name: "annotation",
                                 label: "Аннотация",
                                 constraints: {
+                                    maxLength: { value: 1500, message: "Максимальная длина - 1500 символов" }
                                 }
                             }} />
 
@@ -122,6 +126,7 @@ export
                                 name: "keywords",
                                 label: "Ключевые слова (через запятую)",
                                 constraints: {
+                                    maxLength: { value: 500, message: "Максимальная длина - 500 символов" }
                                 }
                             }} />
 
@@ -131,18 +136,22 @@ export
                                 name={"language"}
                                 options={[
                                     { name: "Русский", value: "rus" },
-                                    { name: "Английский", value: "eng" }
+                                    { name: "Английский", value: "eng" },
+                                    { name: "Другое", value: "" }
                                 ]}
                                 placeHolder={"Выберите язык"}
                                 required={false}
                                 {...tools}
-                                defaultValue={{value: ""}}
+                                defaultValue={{ value: "" }}
                             />
 
                             <SigleInput {...{
                                 ...tools,
                                 name: "source",
                                 label: "Ссылка на источник статьи",
+                                constraints: {
+                                    maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                }
                             }} />
                         </div>
 
@@ -167,7 +176,8 @@ export
                                         name: "journal_name",
                                         label: "Название",
                                         constraints: {
-                                            required: { value: true, message: "Поле необходимо заолнить" }
+                                            required: { value: true, message: "Поле необходимо заолнить" },
+                                            maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
                                         }
                                     }} />
 
@@ -177,6 +187,7 @@ export
                                         label: "PISSN",
                                         constraints: {
                                             required: { value: true, message: "Поле необходимо заполнить" },
+                                            // pattern: { value: /^[0-9]{4}-[0-9]{3}[0-9X]$/, message: "Несоответствие шаблону 1111-1111 или 1111-111X" },
                                             pattern: { value: /^[0-9]{4}-[0-9]{4}$/, message: "Несоответствие шаблону 1111-1111" }
                                         }
                                     }} />
@@ -186,6 +197,7 @@ export
                                         name: "journal_eissn",
                                         label: "EISSN",
                                         constraints: {
+                                            // pattern: { value: /^[0-9]{4}-[0-9]{3}[0-9X]$/, message: "Несоответствие шаблону 1111-1111 или 1111-111X" },
                                             pattern: { value: /^[0-9]{4}-[0-9]{4}$/, message: "Несоответствие шаблону 1111-1111" }
                                         }
                                     }} />

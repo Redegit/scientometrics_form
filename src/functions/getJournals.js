@@ -2,7 +2,7 @@ export const getJournals = async () => {
 
     let journalData = [{ label: "Журнала нет в списке", value: "notInList" }]
 
-    await fetch("http://localhost:8070/journals", {
+    await fetch("http://127.0.0.1:8070/journals", {
         method: 'GET'
     })
         .then(response => response.json())

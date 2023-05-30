@@ -30,4 +30,9 @@ code {
   height: auto;
   width: auto;
   min-width: 400px;
+  width: 80%;
+}
+
+.modal {
+  --bs-modal-width: fit-content;
 }

@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 export const Modal = ({ data, cb }) => {
 
     const handleCloseModal = () => {
@@ -19,7 +17,7 @@ export const Modal = ({ data, cb }) => {
                             <h5 className="modal-title">{data?.success ? "Успешно!" : "Ошибка"}</h5>
                         </div>
                         <div className="modal-body">
-                            <p>{String(data?.message)}</p>
+                            <pre>{String(data?.message)}</pre>
                         </div>
                         <div className="modal-footer">
                             {data?.success

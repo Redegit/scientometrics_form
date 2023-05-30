@@ -33,13 +33,17 @@ export const sendData = async (formData) => {
 
     let result = {}
 
-    await fetch('http://127.0.0.1:8070/upload', {
+    await fetch('/upload', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: dataJson
-    }).then(response => {
+    }).then(async response => {
         if (response.ok) result = { success: true, message: "Можно приступать к заполнению информации о другой статье" }
-        else result = { success: false, message: 'Непредвиденная ошибка' }
+        else {
+            const data = await response.json();
+            console.log(data.data);
+            result = { success: false, message: data.data };
+        }
     }).catch(error => {
         console.error(error); return result = { success: false, message: error }
     })

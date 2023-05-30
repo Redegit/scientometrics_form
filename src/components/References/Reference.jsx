@@ -132,8 +132,7 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
                             label: "PISSN",
                             constraints: {
                                 required: { value: true, message: "Поле необходимо заполнить" },
-                                // pattern: { value: /^[0-9]{4}-[0-9]{3}[0-9X]$/, message: "Несоответствие шаблону 1111-1111 или 1111-111X" },
-                                pattern: { value: /^[0-9]{4}-[0-9]{4}$/, message: "Несоответствие шаблону 1111-1111" }
+                                pattern: { value: /^[0-9]{4}-[0-9]{3}[0-9X]$/, message: "Несоответствие шаблону 1111-1111 или 1111-111X" }
                             }
                         }} />
 
@@ -142,8 +141,7 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
                             name: `references[${index}].journal_eissn`,
                             label: "EISSN",
                             constraints: {
-                                // pattern: { value: /^[0-9]{4}-[0-9]{3}[0-9X]$/, message: "Несоответствие шаблону 1111-1111 или 1111-111X" },
-                                pattern: { value: /^[0-9]{4}-[0-9]{4}$/, message: "Несоответствие шаблону 1111-1111" }
+                                pattern: { value: /^[0-9]{4}-[0-9]{3}[0-9X]$/, message: "Несоответствие шаблону 1111-1111 или 1111-111X" }
                             }
                         }} />
                     </>

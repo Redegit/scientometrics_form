@@ -11,7 +11,7 @@ export const SigleInput = ({ register, formState: { errors, isValid }, control, 
             }
             <input className={`form-control ${_.get(errors, name) ? "is-invalid" : ""}`}
                 {...register(name, { ...constraints })}
-                onBlur={async () => { await trigger(name); console.log(errors); }}
+                onBlur={async () => { await trigger(name);}}
 
             />
             {_.get(errors, name)

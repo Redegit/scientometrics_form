@@ -195,7 +195,8 @@ export
                                             required: { value: true, message: "Поле необходимо заполнить" },
                                             pattern: { value: /^[0-9]{4}-[0-9]{3}[0-9X]$/, message: "Несоответствие шаблону 1111-1111 или 1111-111X" }
                                         },
-                                        defaultValue: "0000-0000"
+                                        defaultValue: "0000-0000",
+                                        tooltip: "Если нет PISSN, оставить 0000-0000"
                                     }} />
 
                                     <SingleInput {...{

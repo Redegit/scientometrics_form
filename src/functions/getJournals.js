@@ -1,6 +1,9 @@
 export const getJournals = async () => {
 
-    let journalData = [{ label: "Журнала нет в списке", value: "notInList" }]
+    let journalData = [
+        { label: "Нет журнала", value: "noJournal" },
+        { label: "Журнала нет в списке", value: "notInList" }
+    ]
 
     await fetch("/journals", {
         method: 'GET'

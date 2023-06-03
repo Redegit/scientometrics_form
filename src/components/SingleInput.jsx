@@ -1,11 +1,13 @@
 import _ from 'lodash';
+import Tooltip from './Tooltip/Tooltip';
 
 
-export const SingleInput = ({ register, formState: { errors, isValid }, control, handleSubmit, trigger, name, label, constraints, defaultValue }) => {
+export const SingleInput = ({ register, formState: { errors, isValid }, control, handleSubmit, trigger, name, label, constraints, defaultValue, tooltip }) => {
 
     return (
         <div className="form-group">
             <label htmlFor="journal">{`${label}`}</label>
+            {tooltip && <Tooltip text={tooltip} /> }
             {constraints?.required &&
                 <span className="text-danger m-1">*</span>
             }

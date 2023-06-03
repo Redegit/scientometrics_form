@@ -24,7 +24,7 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                         <div
                             className={`form-group d-flex gap-3 flex-row justify-content-center border rounded p-2 flex-wrap`}
                         >
-                            <div className='flex-grow-1'>
+                            <div className='flex-grow-1 d-flex flex-column gap-1 gap-1'>
                                 <InputForMulti
                                     register={register}
                                     placeholder={"Фамилия"}
@@ -48,7 +48,8 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                     root={name}
                                     name="name"
                                     index={index}
-                                    errors={errors}
+                                    errors={errors}                                    
+                                    tooltip={"Если есть только инициалы, вводите их с точкой: 'И.'"}
                                 />
                                 <InputForMulti
                                     register={register}
@@ -61,9 +62,10 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                     constraints={{
                                         maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
                                     }}
+                                    tooltip={"Если есть только инициалы, вводите их с точкой: 'И.'"}
                                 />
                             </div>
-                            <div className='flex-grow-1'>
+                            <div className='flex-grow-1 d-flex flex-column gap-1'>
                                 <InputForMulti
                                     register={register}
                                     placeholder={"Департамент (отдел)"}
@@ -102,7 +104,7 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                     }}
                                 />
                             </div>
-                            <div className='flex-grow-1 d-flex flex-column'>
+                            <div className='flex-grow-1 d-flex flex-column gap-1'>
                                 <InputForMulti
                                     register={register}
                                     placeholder={'Организация (сокращение)'}
@@ -126,6 +128,7 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                     constraints={{
                                         maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
                                     }}
+                                    tooltip={"Название города без 'Г.', пример - 'Москва'"}
                                 />
                                 {index !== 0 && (
                                     <button

@@ -35,13 +35,15 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                     errors={errors}
                                     constraints={{
                                         required: { value: true, message: "Поле необходимо заполнить" },
-                                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" },
+                                        pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                                     }}
                                 />
                                 <InputForMulti
                                     register={register}
                                     constraints={{
-                                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" },
+                                        pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                                     }}
                                     placeholder={"Имя"}
                                     trigger={trigger}
@@ -60,7 +62,8 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                     index={index}
                                     errors={errors}
                                     constraints={{
-                                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" },
+                                        pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                                     }}
                                     tooltip={"Если есть только инициалы, вводите их с точкой: 'И.'"}
                                 />
@@ -75,7 +78,8 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                     index={index}
                                     errors={errors}
                                     constraints={{
-                                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" },
+                                        pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                                     }}
                                 />
                                 <InputForMulti
@@ -87,7 +91,8 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                     index={index}
                                     errors={errors}
                                     constraints={{
-                                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" },
+                                        pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                                     }}
                                 />
                                 <InputForMulti
@@ -100,7 +105,8 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                     errors={errors}
                                     constraints={{
                                         required: { value: true, message: "Поле необходимо заполнить" },
-                                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" },
+                                        pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                                     }}
                                 />
                             </div>
@@ -114,7 +120,8 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                     index={index}
                                     errors={errors}
                                     constraints={{
-                                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" },
+                                        pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                                     }}
                                 />
                                 <InputForMulti
@@ -126,7 +133,8 @@ export const MultipleInput = ({ register, formState: { errors, isValid }, contro
                                     index={index}
                                     errors={errors}
                                     constraints={{
-                                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" },
+                                        pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                                     }}
                                     tooltip={"Название города без 'Г.', пример - 'Москва'"}
                                 />

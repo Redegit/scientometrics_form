@@ -1,5 +1,6 @@
 .my-tooltip {
     cursor: help;
+    isolation: isolate;
 }
 
 .my-tooltip button {
@@ -27,11 +28,34 @@
     border-radius: 50%;
     border: 1px solid gray;
     line-height: 0.5rem;
-    right: 2rem;
+    right: 1.8rem;
     top: 0;
     transform: translate(0, 50%);
     color: rgba(128, 128, 128, 1);
     width: 8px;
     height: 8px;
     text-align: center;
+}
+
+.form-invalid-spaces {
+    position: relative;
+}
+
+.form-invalid-spaces::before {
+    content: 'Недопустимы только пробелы';
+    display: block;
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 3%;
+    color: red;
+    background: transparent;
+    line-height: 2rem;
+    z-index: -1;
+    cursor: unset;
+}
+
+.my-tooltip input {
+    background-color: transparent;
 }

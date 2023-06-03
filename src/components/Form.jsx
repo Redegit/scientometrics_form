@@ -1,4 +1,4 @@
-import { SigleInput } from "./SingleInput";
+import { SingleInput } from "./SingleInput";
 import { MultipleInput } from "./MultipleInput";
 import { useForm } from 'react-hook-form';
 import { Dropdown } from "./Dropdown/Dropdown";
@@ -70,28 +70,29 @@ export
                         <h1>Добавление статьи</h1>
                         <div className="container border border-2 rounded pb-3">
                             <h2>Статья</h2>
-                            <SigleInput {...{
+                            <SingleInput {...{
                                 ...tools,
                                 name: "art_name",
                                 label: "Название статьи",
                                 constraints: {
-                                    required: { value: true, message: "Поле необходимо заолнить" },
-                                    maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                    required: { value: true, message: "Поле необходимо заполнить" },
+                                    maxLength: { value: 255, message: "Максимальная длина - 255 символов" },
+                                    pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                                 }
                             }} />
 
-                            <SigleInput {...{
+                            <SingleInput {...{
                                 ...tools,
                                 name: "pages",
                                 label: "Страницы",
                                 constraints: {
-                                    required: { value: true, message: "Поле необходимо заолнить" },
+                                    required: { value: true, message: "Поле необходимо заполнить" },
                                     pattern: { value: /^(\d+-\d+|\d+)$/, message: "Страницы должны быть двумя числами, разделенными дефисом (123-123), или просто одним числом (123)" },
                                     maxLength: { value: 11, message: "Максимальная длина - 11 символов" }
                                 }
                             }} />
 
-                            <SigleInput {...{
+                            <SingleInput {...{
                                 ...tools,
                                 name: "year",
                                 label: "Год",
@@ -103,7 +104,7 @@ export
                                 }
                             }} />
 
-                            <SigleInput {...{
+                            <SingleInput {...{
                                 ...tools,
                                 name: "volume",
                                 label: "Том",
@@ -113,21 +114,23 @@ export
                                 }
                             }} />
 
-                            <SigleInput {...{
+                            <SingleInput {...{
                                 ...tools,
                                 name: "annotation",
                                 label: "Аннотация",
                                 constraints: {
-                                    maxLength: { value: 1500, message: "Максимальная длина - 1500 символов" }
+                                    maxLength: { value: 60000, message: "Максимальная длина - 60000 символов" },
+                                    pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                                 }
                             }} />
 
-                            <SigleInput {...{
+                            <SingleInput {...{
                                 ...tools,
                                 name: "keywords",
                                 label: "Ключевые слова (через запятую)",
                                 constraints: {
-                                    maxLength: { value: 500, message: "Максимальная длина - 500 символов" }
+                                    maxLength: { value: 500, message: "Максимальная длина - 500 символов" },
+                                    pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                                 }
                             }} />
 
@@ -146,12 +149,13 @@ export
                                 defaultValue={{ value: "" }}
                             />
 
-                            <SigleInput {...{
+                            <SingleInput {...{
                                 ...tools,
                                 name: "source",
                                 label: "Ссылка на источник статьи",
                                 constraints: {
-                                    maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                    maxLength: { value: 1000, message: "Максимальная длина - 1000 символов" },
+                                    pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                                 }
                             }} />
                         </div>
@@ -172,30 +176,32 @@ export
 
                             {journalExists &&
                                 <>
-                                    <SigleInput {...{
+                                    <SingleInput {...{
                                         ...tools,
                                         name: "journal_name",
                                         label: "Название",
                                         constraints: {
-                                            required: { value: true, message: "Поле необходимо заолнить" },
-                                            maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                            required: { value: true, message: "Поле необходимо заполнить" },
+                                            maxLength: { value: 255, message: "Максимальная длина - 255 символов" },
+                                            pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                                         }
                                     }} />
 
-                                    <SigleInput {...{
+                                    <SingleInput {...{
                                         ...tools,
                                         name: "journal_pissn",
-                                        label: "PISSN",
+                                        label: "PISSN (ISSN печатной версии)",
                                         constraints: {
                                             required: { value: true, message: "Поле необходимо заполнить" },
                                             pattern: { value: /^[0-9]{4}-[0-9]{3}[0-9X]$/, message: "Несоответствие шаблону 1111-1111 или 1111-111X" }
-                                        }
+                                        },
+                                        defaultValue: "0000-0000"
                                     }} />
 
-                                    <SigleInput {...{
+                                    <SingleInput {...{
                                         ...tools,
                                         name: "journal_eissn",
-                                        label: "EISSN",
+                                        label: "EISSN (ISSN электронной версии)",
                                         constraints: {
                                             pattern: { value: /^[0-9]{4}-[0-9]{3}[0-9X]$/, message: "Несоответствие шаблону 1111-1111 или 1111-111X" }
                                         }

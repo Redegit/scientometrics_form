@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Dropdown } from "../Dropdown/Dropdown";
 import { MultipleDropdown } from "../MultipleDropdown";
-import { SigleInput } from "../SingleInput";
+import { SingleInput } from "../SingleInput";
 import { MultipleInput } from "../MultipleInput";
 
 export const Reference = ({ register, formState: { errors, isValid }, setValue, control, trigger, journals, index }) => {
@@ -11,31 +11,32 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
 
     return (
         <>
-            <h2>{`Статья ${index + 1}`}</h2>
+            <h3 className="text-center">{`Статья ${index + 1}`}</h3>
             <div className="container border border-2 rounded pb-3">
-                <h3>Статья</h3>
-                <SigleInput {...{
+                <h4>Статья</h4>
+                <SingleInput {...{
                     ...tools,
                     name: `references[${index}].art_name`,
                     label: "Название статьи",
                     constraints: {
-                        required: { value: true, message: "Поле необходимо заолнить" },
-                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                        required: { value: true, message: "Поле необходимо заполнить" },
+                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" },
+                        pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                     }
                 }} />
 
-                <SigleInput {...{
+                <SingleInput {...{
                     ...tools,
                     name: `references[${index}].pages`,
                     label: "Страницы",
                     constraints: {
-                        required: { value: true, message: "Поле необходимо заолнить" },
+                        required: { value: true, message: "Поле необходимо заполнить" },
                         pattern: { value: /^(\d+-\d+|\d+)$/, message: "Страницы должны быть двумя числами, разделенными дефисом (123-123), или просто одним числом (123)" },
                         maxLength: { value: 11, message: "Максимальная длина - 11 символов" }
                     }
                 }} />
 
-                <SigleInput {...{
+                <SingleInput {...{
                     ...tools,
                     name: `references[${index}].year`,
                     label: "Год",
@@ -47,7 +48,7 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
                     }
                 }} />
 
-                <SigleInput {...{
+                <SingleInput {...{
                     ...tools,
                     name: `references[${index}].volume`,
                     label: "Том",
@@ -57,21 +58,23 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
                     }
                 }} />
 
-                <SigleInput {...{
+                <SingleInput {...{
                     ...tools,
                     name: `references[${index}].annotation`,
                     label: "Аннотация",
                     constraints: {
-                        maxLength: { value: 1500, message: "Максимальная длина - 1500 символов" }
+                        maxLength: { value: 60000, message: "Максимальная длина - 60000 символов" },
+                        pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                     }
                 }} />
 
-                <SigleInput {...{
+                <SingleInput {...{
                     ...tools,
                     name: `references[${index}].keywords`,
                     label: "Ключевые слова (через запятую)",
                     constraints: {
-                        maxLength: { value: 500, message: "Максимальная длина - 500 символов" }
+                        maxLength: { value: 500, message: "Максимальная длина - 500 символов" },
+                        pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                     }
                 }} />
 
@@ -89,12 +92,13 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
                     {...tools}
                 />
 
-                <SigleInput {...{
+                <SingleInput {...{
                     ...tools,
                     name: `references[${index}].source`,
                     label: "Ссылка на источник статьи",
                     constraints: {
-                        maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                        maxLength: { value: 1000, message: "Максимальная длина - 1000 символов" },
+                        pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                     }
                 }} />
             </div>
@@ -116,30 +120,32 @@ export const Reference = ({ register, formState: { errors, isValid }, setValue, 
 
                 {journalExists &&
                     <>
-                        <SigleInput {...{
+                        <SingleInput {...{
                             ...tools,
                             name: `references[${index}].journal_name`,
                             label: "Название",
                             constraints: {
-                                required: { value: true, message: "Поле необходимо заолнить" },
-                                maxLength: { value: 255, message: "Максимальная длина - 255 символов" }
+                                required: { value: true, message: "Поле необходимо заполнить" },
+                                maxLength: { value: 255, message: "Максимальная длина - 255 символов" },
+                                pattern: { value: /^(?!\s+$)/, message: "Значение не может состоять только из пробелов" }
                             }
                         }} />
 
-                        <SigleInput {...{
+                        <SingleInput {...{
                             ...tools,
                             name: `references[${index}].journal_pissn`,
-                            label: "PISSN",
+                            label: "PISSN (ISSN печатной версии)",
                             constraints: {
                                 required: { value: true, message: "Поле необходимо заполнить" },
                                 pattern: { value: /^[0-9]{4}-[0-9]{3}[0-9X]$/, message: "Несоответствие шаблону 1111-1111 или 1111-111X" }
-                            }
+                            },
+                            defaultValue: "0000-0000"
                         }} />
 
-                        <SigleInput {...{
+                        <SingleInput {...{
                             ...tools,
                             name: `references[${index}].journal_eissn`,
-                            label: "EISSN",
+                            label: "EISSN (ISSN электронной версии)",
                             constraints: {
                                 pattern: { value: /^[0-9]{4}-[0-9]{3}[0-9X]$/, message: "Несоответствие шаблону 1111-1111 или 1111-111X" }
                             }

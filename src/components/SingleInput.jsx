@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 
-export const SigleInput = ({ register, formState: { errors, isValid }, control, handleSubmit, trigger, name, label, constraints }) => {
+export const SingleInput = ({ register, formState: { errors, isValid }, control, handleSubmit, trigger, name, label, constraints, defaultValue }) => {
 
     return (
         <div className="form-group">
@@ -11,8 +11,8 @@ export const SigleInput = ({ register, formState: { errors, isValid }, control, 
             }
             <input className={`form-control ${_.get(errors, name) ? "is-invalid" : ""}`}
                 {...register(name, { ...constraints })}
-                onBlur={async () => { await trigger(name);}}
-
+                onBlur={async () => { await trigger(name); }}
+                defaultValue={defaultValue}
             />
             {_.get(errors, name)
                 ? <p className='m-0 text-danger'>{`${_.get(errors, `${name}.message`)}`}</p>

@@ -11,7 +11,7 @@ export const InputForMulti = ({ register, root, name, index, errors, trigger, pl
     }
 
     return (
-        <span class={`d-inline-block my-tooltip  ${tooltip ? "input-tooltip" : ""}`} tabindex="0" data-toggle="tooltip" title={tooltip}>
+        <span className={`d-inline-block my-tooltip  ${tooltip ? "input-tooltip" : ""}`} tabIndex="0" data-toggle="tooltip" title={tooltip}>
             <input
                 className={`form-control ${checkError() ? "is-invalid" : ""}`}
                 {...register(`${root}[${index}].${name}`,

@@ -1,5 +1,6 @@
 import _ from "lodash";
 import Tooltip from "./Tooltip/Tooltip";
+import { useEffect } from "react";
 
 export const InputForMulti = ({ register, root, name, index, errors, trigger, placeholder, constraints, tooltip }) => {
 
